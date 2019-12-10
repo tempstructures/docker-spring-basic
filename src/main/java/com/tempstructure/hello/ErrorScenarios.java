@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ErrorScenarios {
 	@GetMapping
 	public String error() {
-		return "oopsiee!!!!";
+		return "oopsiee!!!!!!";
 	}
 }
