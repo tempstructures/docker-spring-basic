@@ -6,9 +6,14 @@ node {
         checkout scm
     }
     
-    stage('build maven'){
-        mvn package
+    stage('Build') {
+    withMaven(maven: 'maven3') {
+      dir('app') {
+        sh 'mvn clean package'
+        dockerCmd 'build --tag automatingguy/sparktodo:SNAPSHOT .'
+      }
     }
+  }
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
