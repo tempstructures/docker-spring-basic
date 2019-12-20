@@ -7,13 +7,10 @@ node {
     }
     
     stage('Build') {
-    withMaven(maven: 'maven3') {
-      dir('app') {
-        sh 'mvn clean package'
-        dockerCmd 'build --tag automatingguy/sparktodo:SNAPSHOT .'
-      }
+        maven {
+            goals('clean install')
+        }
     }
-  }
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
